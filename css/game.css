@@ -1,0 +1,203 @@
+.game-holder {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: -webkit-linear-gradient(#e4e0ba, #f7d9aa);
+	background: linear-gradient(#e4e0ba, #f7d9aa);
+}
+.world {
+	position: absolute;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+.header {
+	position: absolute;
+	top: 0px;
+	left: 30px;
+	text-align: left;
+	pointer-events: none;
+	display: none;
+}
+.score {
+	margin: 1em 0 0;
+	text-align: left;
+}
+.score__content {
+	height: 60px;
+	line-height: 60px;
+	display: flex;
+}
+.score__label {
+	font-size: 20px;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	color: #fff;
+	font-weight: bold;
+	margin-right: 10px;
+}
+.score__field {
+	top: 30px;
+	letter-spacing: 3px;
+	position: fixed;
+	left: 20%;
+	font-family: 'Playfair Display';
+	font-weight: bold;
+	color: #fff;
+	font-size: 18px;
+}
+.score__value {
+	top: 80px;
+	position: fixed;
+	left: 20%;
+	font-family: 'Playfair Display';
+	font-weight: bold;
+	color: #fff;
+}
+.score__value--dist {
+	font-size: 36px;
+}
+.score__value--energy {
+	position: fixed;
+	width: 60%;
+	left: 20%;
+	height: 8px;
+	top: 80px;
+	border-radius: 3px;
+	background-color: #d1b790;
+}
+.energy-bar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: 2px;
+	background-color: #f25346;
+	-webkit-animation-name: none;
+	animation-name: none;
+	-webkit-animation-duration: 150ms;
+	animation-duration: 150ms;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes blinking {
+	0% { opacity: 1; }
+	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+@keyframes blinking {
+	0% { opacity: 1; }
+	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+.welcome {
+	width: 100%;
+	background: rgba(0, 0, 0, .5);
+	position: fixed;
+	z-index: 1024;
+	top: 0;
+	left: 0;
+}
+
+.gameOver {
+	padding-top: 20vh;
+}
+
+#gameOver {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 2000;
+	background: rgba(0,0,0,.7);
+}
+
+.gameOver .over-list{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 300px;
+	margin:0 auto;
+	font-family: 'Playfair Display';
+	color:#fff;
+	height: 50px;
+	line-height: 50px;
+	font-size: 14px;
+}
+.gameOver .over-list:last-child {
+	margin-top: 20px;
+}
+
+#userScore {
+	margin-top: -15px;
+	font-size: 42px;
+	font-weight: bold;
+	color: #f7a8c2;
+}
+
+.overBtn {
+	font-size: 16px;
+	height: 35px;
+	line-height: 35px;
+	padding: 0 20px;
+	border-radius: 2px;
+	cursor: pointer;
+	user-select: none;
+}
+
+#playAgain {
+	background: rgba(162,138,220,1);
+}
+#playAgain:hover {
+	background: rgba(162,138,220,.7);
+}
+
+#winerList {
+	background: rgba(214,154,171,1);
+}
+#winerList:hover {
+	background: rgba(214,154,171,.7);
+}
+
+.test {
+	width: 500px;
+	margin-top: 30vh;
+	background: rgba(255,255,255,.8);
+	box-shadow: #ddd 0 0 1px 1px;
+	padding: 20px
+}
+.test .title {
+	font-size: 18px;
+	color: #9b95ca;
+}
+.test .answer-box {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+.test .btn {
+	background-color: #9b95ca;
+	padding: 6px 20px;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #fff;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#winerListIframe {
+	height: 100vh;
+	width: 300px;
+	position: fixed;
+	top: -50px;
+	right: -300px;
+	z-index: 5024;
+}

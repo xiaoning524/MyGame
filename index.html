@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/base.css" />
+	<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
+</head>
+<body>
+<main class="demo-1" id="demo-1">
+	<div class="content">
+		<div class="slideshow">
+			<div class="slide slide--current">
+				<div class="slide__bg slide__bg--1"></div>
+				<h2 class="word word--1">在知识的海洋上翱翔</h2>
+				<div class="login-box">
+					<div><input type="text" id="userName" placeholder="请输入姓名"/></div>
+					<div class="btn" id="login" onclick="login()">开始游戏</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<script src="js/charming.min.js"></script>
+<script src="js/anime.min.js"></script>
+<script src="js/wordFx.js"></script>
+<script src="js/userList.js"></script>
+<script>
+	function login(){
+		if(document.getElementById("userName").value == ''){
+			alert("请输入昵称！")
+		}else {
+			//判断是否重复
+			var status = true;
+			for(var i=0; i<students.length; i++){
+				if(document.getElementById("userName").value == students[i].name){
+					alert("昵称重复！");
+					status = false;
+				}
+			}
+			beginGame(status);
+		}
+	}
+	function beginGame(boolean){
+		if(boolean){
+			var user = {
+				userName: document.getElementById("userName").value,
+				gameStatus: 'playing',
+				code: 1,
+				viewSize: 10,
+				level: 1,
+				distanceScore: 0,
+				learningScore: 0,
+				interactiveScore: 0,
+				userScore: 0
+			};
+			sessionStorage.setItem("userJson", JSON.stringify(user));
+		}else{
+
+		}
+		window.location.href = "game.html"
+	}
+	{
+		const effects = [
+			{
+				options: {
+					shapesOnTop: true,
+					shapeColors: ['#ec4747','#5447ec','#ecb447','#a847ec','#635f65'],
+					shapeFill: false,
+					shapeStrokeWidth: 4,
+					totalShapes: 30
+				},
+				show: {
+					lettersAnimationOpts: {
+						duration: 300,
+						delay: (t,i) => i*100,
+					easing: 'easeInExpo',
+					opacity: [0,1],
+					translateY: ['-50%', '0%']
+					},
+					shapesAnimationOpts: {
+						duration: 400, delay: (t,i) => i*5+300,  easing: [0.2,1,0.3,1], translateX: () => [0, anime.random(-100,100)], translateY: () => [50,anime.random(-100,150)],
+						scale: () => [randomBetween(0.2,0.4),randomBetween(0.2,0.4)],
+						rotate: () => anime.random(-25,25),
+						opacity: [
+							{value: 1, duration: 1, easing: 'easeOutQuad', delay: (t,i) => i*5+300},
+							{value: 0, duration: 250, easing: 'easeOutQuad', delay: 200}
+						]
+					}
+				}
+			}
+		];
+		class Slideshow {
+			constructor(el) {
+				this.DOM = {};
+				this.DOM.el = el;
+				this.DOM.slides = Array.from(this.DOM.el.querySelectorAll('.slide'));
+				this.DOM.bgs = Array.from(this.DOM.el.querySelectorAll('.slide__bg'));
+				this.DOM.words = Array.from(this.DOM.el.querySelectorAll('.word'));
+				this.slidesTotal = this.DOM.slides.length;
+				this.current = 0;
+				this.words = [];
+				this.DOM.words.forEach((word, pos) => {
+					this.words.push(new Word(word, effects[pos].options));
+				});
+				this.isAnimating = true;
+				this.words[this.current].show(effects[this.current].show).then(() => this.isAnimating = false);
+			}
+			show(direction) {
+				if ( this.isAnimating ) return;
+				this.isAnimating = true;
+				let newPos;
+				let currentPos = this.current;
+				this.DOM.slides[newPos].style.opacity = 1;
+				this.DOM.bgs[newPos].style.transform = 'none';
+				anime({
+					targets: this.DOM.bgs[currentPos],
+					duration: 600,
+					easing: [0.2,1,0.3,1],
+					translateY: ['0%', direction === 'next' ? '-100%' : '100%'],
+					complete: () => { this.DOM.slides[currentPos].classList.remove('slide--current');this.DOM.slides[currentPos].style.opacity = 0;this.DOM.slides[newPos].classList.add('slide--current');this.words[newPos].show(effects[newPos].show).then(() => this.isAnimating = false); }
+				});
+				this.words[newPos].hide(); this.words[this.current].hide(effects[currentPos].hide).then(() => { this.current = newPos; });
+
+			}
+		}
+		const slideshow = new Slideshow(document.querySelector('.slideshow'));
+	}
+</script>
+</body>
+</html>

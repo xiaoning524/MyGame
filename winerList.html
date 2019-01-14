@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+        body{
+            overflow-y: hidden;
+        }
+        * { margin:0; padding:0 } ul,li{ list-style:none}
+        .main-page { width:300px;margin-top:100px; display:flex;flex-direction: column;align-items: flex-end;text-align: right}
+        .main-page .nav{ text-align:center;font-size:14px;color:#fff;display:flex;}
+        .main-page .nav div { height:40px;line-height:40px;border-radius:2px;cursor:pointer;width:100px}
+        .main-page .nav div.on { font-size:16px; color: #ff9878; font-weight: bold }
+        .main-page .left{ border-bottom: #fff 1px solid }
+        .main-page .right { width:280px}
+        .main-page .content { overflow:hidden; }
+        .con-ggh ul{ padding: 0 0 0 20px;}
+        .con-ggh ul li{ padding: 10px 30px; border-bottom: #fff 1px dotted }
+        .con-ggh ul li:last-child { border-bottom: none }
+        .con-ggh ul .wrp{ display: flex; flex-direction: row; justify-content: space-between; color: #fff; height: 24px;line-height: 24px;font-size: 14px; }
+        .con-ggh ul .wrp .name { font-size: 16px; color: #ff9878; }
+        .con-ggh ul .wrp .score { font-size: 14px; color: #ff9878; }
+    </style>
+
+</head>
+<body>
+
+<div class="main-page">
+    <div class="left">
+        <div class="nav-back"></div>
+        <div class="nav">
+            <div class="on">初入数学</div>
+            <div>数学新秀</div>
+            <div>数学明星</div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="content">
+            <div class="con-ggh">
+                <div class="zcinfo fl">
+                    <ul class="clearfix">
+                        <li>
+                            <div class="wrp"> <div class="name">小明</div> <div class="score">3458</div> </div>
+                            <div class="wrp"> <div class="distance">距离：2258</div> <div class="answer">答题：800</div> </div>
+                        </li>
+                        <li>
+                            <div class="wrp"> <div class="name">小强</div> <div class="score">3258</div> </div>
+                            <div class="wrp"> <div class="distance">距离：2258</div> <div class="answer">答题：600</div> </div>
+                        </li>
+                        <li>
+                            <div class="wrp"> <div class="name">小白</div> <div class="score">3058</div> </div>
+                            <div class="wrp"> <div class="distance">距离：2158</div> <div class="answer">答题：500</div> </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="con-ggh">
+                <div class="zcinfo fl">
+                    <ul class="clearfix">
+                        <li>
+                            <div class="wrp"> <div class="name">小明</div> <div class="score">3458</div> </div>
+                            <div class="wrp"> <div class="distance">距离：2258</div> <div class="answer">答题：800</div> </div>
+                        </li>
+                        <li>
+                            <div class="wrp"> <div class="name">小强</div> <div class="score">3258</div> </div>
+                            <div class="wrp"> <div class="distance">距离：2258</div> <div class="answer">答题：600</div> </div>
+                        </li>
+                        <li>
+                            <div class="wrp"> <div class="name">小白</div> <div class="score">3058</div> </div>
+                            <div class="wrp"> <div class="distance">距离：2158</div> <div class="answer">答题：500</div> </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="con-ggh">
+                <div class="zcinfo fl">
+                    <ul class="clearfix">
+                        <li>
+                            <div class="wrp"> <div class="name">小明</div> <div class="score">3458</div> </div>
+                            <div class="wrp"> <div class="distance">距离：2258</div> <div class="answer">答题：800</div> </div>
+                        </li>
+                        <li>
+                            <div class="wrp"> <div class="name">小强</div> <div class="score">3258</div> </div>
+                            <div class="wrp"> <div class="distance">距离：2258</div> <div class="answer">答题：600</div> </div>
+                        </li>
+                        <li>
+                            <div class="wrp"> <div class="name">小白</div> <div class="score">3058</div> </div>
+                            <div class="wrp"> <div class="distance">距离：2158</div> <div class="answer">答题：500</div> </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(".main-page .nav div").mouseenter(function () { var $this = $(this); var index = $this.index(); }).mouseleave(function () { var $this = $(this); var index = $this.index(); }).click(function () {
+        var $this = $(this);
+        var index = $this.index();
+        var l = -(index * (document.documentElement.clientHeight - 150));
+        $(".main-page .nav div").removeClass("on");
+        $(".main-page .nav div").eq(index).addClass("on");
+        $(".main-page .content .con-ggh:eq(0)").stop().animate({ "margin-top": l }, 500);
+    });
+    $(".content, .con-ggh").css("height",document.documentElement.clientHeight - 150)
+</script>
+</body>
+</html>
